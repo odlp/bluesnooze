@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Bluesnooze" customModuleProvider="target">
+            <connections>
+                <outlet property="launchAtLoginMenuItem" destination="I9E-pI-lLm" id="DFX-bS-N3m"/>
+                <outlet property="statusMenu" destination="AEO-aA-1fp" id="ueI-UR-7ba"/>
+            </connections>
+        </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu id="AEO-aA-1fp">
+            <items>
+                <menuItem title="Launch at login" id="I9E-pI-lLm" userLabel="Launch At Login Menu Item">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="launchAtLoginClicked:" target="Voe-Tx-rLC" id="ooK-DW-6Kn"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" id="0IH-xa-Tvk">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitClicked:" target="Voe-Tx-rLC" id="nzv-74-hhE"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-64.5" y="68"/>
+        </menu>
+    </objects>
+</document>
