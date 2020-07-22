@@ -2,7 +2,13 @@
 
 # Bluesnooze
 
-### [Download the latest release][download-latest]
+[Download the latest release][download-latest] or install via Homebrew:
+
+```sh
+brew cask install odlp/bluesnooze/bluesnooze
+```
+
+---
 
 Prevent your sleeping Mac from connecting to Bluetooth accessories.
 
