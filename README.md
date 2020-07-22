@@ -8,13 +8,13 @@
 brew cask install odlp/bluesnooze/bluesnooze
 ```
 
----
+## About
 
-Prevent your sleeping Mac from connecting to Bluetooth accessories.
+**Bluesnooze prevents your sleeping Mac from connecting to Bluetooth accessories.**
 
 If you pair Bluetooth headphones or speakers with both your phone & Mac it can be frustrating when your sleeping Mac connects intermittently and disrupts the audio.
 
-With Bluesnooze the Bluetooth connection is switched off when your Mac sleeps, and switched back on when your Mac wakes.
+With Bluesnooze the Bluetooth connection is switched off when your Mac sleeps, and switched on when your Mac wakes.
 
 ![Screenshot showing Bluesnooze in the status bar](images/screenshot.png)
 
@@ -33,3 +33,7 @@ You might also want to check-out Whisper –  [the volume limiter for MacOS](htt
 - Unfortunately this app can't be distributed via the App Store because it uses a private API to switch Bluetooth on/off (but the release version is notarized by Apple).
 
 [download-latest]: https://github.com/odlp/bluesnooze/releases/latest
+
+## Enjoying Bluesnooze? 
+
+Perhaps you could [buy me a coffee](https://monzo.me/olipeate/2.00?d=Thanks%20for%20Bluesnooze!%20) to say thanks :coffee:
