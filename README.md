@@ -36,4 +36,4 @@ You might also want to check-out Whisper –  [the volume limiter for MacOS](htt
 
 ## Enjoying Bluesnooze? 
 
-Perhaps you could [buy me a coffee](https://monzo.me/olipeate/2.00?d=Thanks%20for%20Bluesnooze!%20) to say thanks :coffee:
+Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say thanks :coffee:
