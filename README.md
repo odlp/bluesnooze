@@ -5,6 +5,10 @@
 [Download the latest release][download-latest] or install via Homebrew:
 
 ```sh
+# Latest homebrew:
+brew install --cask odlp/bluesnooze/bluesnooze
+
+# Homebrew 2.5 or below
 brew cask install odlp/bluesnooze/bluesnooze
 ```
 
