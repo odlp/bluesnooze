@@ -21,12 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         initStatusItem()
         setLaunchAtLoginState()
-        NSWorkspace.shared.notificationCenter.addObserver(
-            self, selector: #selector(onSleepNote(note:)), name: NSWorkspace.willSleepNotification, object: nil
-        )
-        NSWorkspace.shared.notificationCenter.addObserver(
-            self, selector: #selector(onWakeNote(note:)), name: NSWorkspace.didWakeNotification, object: nil
-        )
+        setupNotificationHandlers()
     }
 
     // MARK: Click handlers
@@ -42,11 +37,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: Notification handlers
 
-    @objc func onSleepNote(note: NSNotification) {
+    func setupNotificationHandlers() {
+        [
+            NSWorkspace.willSleepNotification: #selector(onPowerDown(note:)),
+            NSWorkspace.willPowerOffNotification: #selector(onPowerDown(note:)),
+            NSWorkspace.didWakeNotification: #selector(onPowerUp(note:))
+        ].forEach { notification, sel in
+            NSWorkspace.shared.notificationCenter.addObserver(self, selector: sel, name: notification, object: nil)
+        }
+    }
+
+    @objc func onPowerDown(note: NSNotification) {
         setBluetooth(powerOn: false)
     }
 
-    @objc func onWakeNote(note: NSNotification) {
+    @objc func onPowerUp(note: NSNotification) {
         setBluetooth(powerOn: true)
     }
 
