@@ -6,10 +6,10 @@
 
 ```sh
 # Latest homebrew:
-brew install --cask odlp/bluesnooze/bluesnooze
+brew install bluesnooze
 
 # Homebrew 2.5 or below
-brew cask install odlp/bluesnooze/bluesnooze
+brew cask install bluesnooze
 ```
 
 ## About
@@ -38,6 +38,6 @@ You might also want to check-out Whisper –  [the volume limiter for MacOS](htt
 
 [download-latest]: https://github.com/odlp/bluesnooze/releases/latest
 
-## Enjoying Bluesnooze? 
+## Enjoying Bluesnooze?
 
 Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say thanks :coffee:
