@@ -32,6 +32,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setLaunchAtLoginState()
     }
 
+    @IBAction func hideIconClicked(_ sender: NSMenuItem) {
+        UserDefaults.standard.set(true, forKey: "hideIcon")
+        statusItem.statusBar?.removeStatusItem(statusItem)
+    }
+
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared.terminate(self)
     }
@@ -63,6 +68,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: UI state
 
     private func initStatusItem() {
+        if UserDefaults.standard.bool(forKey: "hideIcon") {
+            return
+        }
+
         if let icon = NSImage(named: "bluesnooze") {
             icon.isTemplate = true
             statusItem.button?.image = icon
