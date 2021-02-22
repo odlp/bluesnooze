@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         initStatusItem()
         setLaunchAtLoginState()
         setupNotificationHandlers()
+        setBluetooth(powerOn: true)
     }
 
     // MARK: Click handlers
