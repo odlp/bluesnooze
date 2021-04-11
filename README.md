@@ -33,6 +33,12 @@ You might also want to check-out Whisper –  [the volume limiter for MacOS](htt
 
 ## Caveats
 
+- The app has an option to hide the icon from the status bar. To undo this setting run the following in your terminal: 
+    ```sh
+    defaults delete com.oliverpeate.Bluesnooze hideIcon && killall -9 Bluesnooze
+    ```
+    > Note: After executing this command, you will need to start the app again.
+
 - Please note this app is not compatible with the “Allow your Apple Watch to unlock your Mac” feature.
 - Unfortunately this app can't be distributed via the App Store because it uses a private API to switch Bluetooth on/off (but the release version is notarized by Apple).
 
