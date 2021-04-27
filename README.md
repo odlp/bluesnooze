@@ -38,6 +38,8 @@ You might also want to check-out Whisper –  [the volume limiter for MacOS](htt
 
 [download-latest]: https://github.com/odlp/bluesnooze/releases/latest
 
+
+
 ## Enjoying Bluesnooze?
 
 Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say thanks :coffee:
