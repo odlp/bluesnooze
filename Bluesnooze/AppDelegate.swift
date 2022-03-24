@@ -17,12 +17,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var launchAtLoginMenuItem: NSMenuItem!
 
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    private var prevState: Int32 = IOBluetoothPreferenceGetControllerPowerState()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         initStatusItem()
         setLaunchAtLoginState()
         setupNotificationHandlers()
-        setBluetooth(powerOn: true)
     }
 
     // MARK: Click handlers
@@ -54,11 +54,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onPowerDown(note: NSNotification) {
+        prevState = IOBluetoothPreferenceGetControllerPowerState()
         setBluetooth(powerOn: false)
     }
 
     @objc func onPowerUp(note: NSNotification) {
-        setBluetooth(powerOn: true)
+        if prevState != 0 {
+            setBluetooth(powerOn: true)
+        }
     }
 
     private func setBluetooth(powerOn: Bool) {
