@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -33,14 +33,14 @@
                         <action selector="hideIconClicked:" target="Voe-Tx-rLC" id="rZI-1a-Hhe"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Quit" id="0IH-xa-Tvk">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem isSeparatorItem="YES" id="lFK-Uh-kIG"/>
+                <menuItem title="Quit" keyEquivalent="q" id="0IH-xa-Tvk">
                     <connections>
                         <action selector="quitClicked:" target="Voe-Tx-rLC" id="nzv-74-hhE"/>
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-64.5" y="68"/>
+            <point key="canvasLocation" x="-64.5" y="56.5"/>
         </menu>
     </objects>
 </document>
