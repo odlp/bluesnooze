@@ -14,6 +14,9 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Bluesnooze" customModuleProvider="target">
             <connections>
+                <outlet property="onPowerUpActionRemember" destination="mBz-mB-SAw" id="dpV-qb-pVO"/>
+                <outlet property="onPowerUpActionAlways" destination="k9U-YJ-Qra" id="iPK-GH-kd9"/>
+                <outlet property="onPowerUpActionNever" destination="wwz-8o-dOW" id="kwY-c8-qPz"/>
                 <outlet property="launchAtLoginMenuItem" destination="I9E-pI-lLm" id="DFX-bS-N3m"/>
                 <outlet property="statusMenu" destination="AEO-aA-1fp" id="ueI-UR-7ba"/>
             </connections>
@@ -21,7 +24,32 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="AEO-aA-1fp">
             <items>
-                <menuItem title="Launch at login" id="I9E-pI-lLm" userLabel="Launch At Login Menu Item">
+                <menuItem title="Start Bluetooth on wake" id="MrC-mk-c9a" userLabel="Start Bluetooth on wake">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Start Bluetooth on wake" id="6db-i4-kn8">
+                        <items>
+                            <menuItem title="Remember previous state" id="mBz-mB-SAw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="onPowerUpActionRememberClicked:" target="Voe-Tx-rLC" id="eue-OR-a53"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Always" id="k9U-YJ-Qra">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="onPowerUpActionAlwaysClicked:" target="Voe-Tx-rLC" id="CZN-qU-PVs"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Never" id="wwz-8o-dOW">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="onPowerUpActionNeverClicked:" target="Voe-Tx-rLC" id="Gg5-n6-rUW"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Launch at login" id="I9E-pI-lLm">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="launchAtLoginClicked:" target="Voe-Tx-rLC" id="ooK-DW-6Kn"/>
