@@ -50,3 +50,10 @@ defaults delete com.oliverpeate.Bluesnooze hideIcon && killall Bluesnooze
 ```
 
 When you next relaunch the application it should appear in the menu bar.
+
+### Can you add support for selectively disconnecting certain devices?
+
+Bluesnooze is a really simple app which toggles the Bluetooth power on/off.
+Disconnecting specific devices would require a complete rewrite, and I don't
+need this functionality or the complexity it brings. Please feel free to fork &
+experiment as you like ❤️
