@@ -37,3 +37,16 @@ You might also want to check-out Whisper –  [the volume limiter for MacOS](htt
 ## Enjoying Bluesnooze?
 
 Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say thanks :coffee:
+
+
+## FAQs
+
+### I hid the Blueesnooze icon, how do I show it again?
+
+In your terminal run the following command:
+
+```sh
+defaults delete com.oliverpeate.Bluesnooze hideIcon && killall Bluesnooze
+```
+
+When you next relaunch the application it should appear in the menu bar.
