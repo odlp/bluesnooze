@@ -10,22 +10,65 @@ import Cocoa
 import IOBluetooth
 import LaunchAtLogin
 
+let onPowerUpActionKey = "onPowerUpAction"
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet weak var onPowerUpActionRemember: NSMenuItem!
+    @IBOutlet weak var onPowerUpActionAlways: NSMenuItem!
+    @IBOutlet weak var onPowerUpActionNever: NSMenuItem!
     @IBOutlet weak var launchAtLoginMenuItem: NSMenuItem!
 
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    private var prevState: Int32 = IOBluetoothPreferenceGetControllerPowerState()
+    private var onPowerUpAction: String = "remember"
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         initStatusItem()
         setLaunchAtLoginState()
         setupNotificationHandlers()
-        setBluetooth(powerOn: true)
+        UserDefaults.standard.register(defaults: [
+            onPowerUpActionKey: "remember",
+        ])
+        if let action = UserDefaults.standard.string(forKey: onPowerUpActionKey) {
+            onPowerUpAction = action
+        }
+        if onPowerUpAction == "remember" {
+            onPowerUpActionRemember.state = NSControl.StateValue.on
+        } else if onPowerUpAction == "always" {
+            onPowerUpActionAlways.state = NSControl.StateValue.on
+        } else if onPowerUpAction == "never" {
+            onPowerUpActionNever.state = NSControl.StateValue.on
+        }
     }
 
     // MARK: Click handlers
+
+    @IBAction func onPowerUpActionRememberClicked(_ sender: NSMenuItem) {
+        onPowerUpAction = "remember"
+        UserDefaults.standard.set(onPowerUpAction, forKey: onPowerUpActionKey)
+        onPowerUpActionRemember.state = NSControl.StateValue.on
+        onPowerUpActionAlways.state = NSControl.StateValue.off
+        onPowerUpActionNever.state = NSControl.StateValue.off
+    }
+
+    @IBAction func onPowerUpActionAlwaysClicked(_ sender: NSMenuItem) {
+        onPowerUpAction = "always"
+        UserDefaults.standard.set(onPowerUpAction, forKey: onPowerUpActionKey)
+        onPowerUpActionRemember.state = NSControl.StateValue.off
+        onPowerUpActionAlways.state = NSControl.StateValue.on
+        onPowerUpActionNever.state = NSControl.StateValue.off
+    }
+
+    @IBAction func onPowerUpActionNeverClicked(_ sender: NSMenuItem) {
+        onPowerUpAction = "never"
+        UserDefaults.standard.set(onPowerUpAction, forKey: onPowerUpActionKey)
+        onPowerUpActionRemember.state = NSControl.StateValue.off
+        onPowerUpActionAlways.state = NSControl.StateValue.off
+        onPowerUpActionNever.state = NSControl.StateValue.on
+    }
 
     @IBAction func launchAtLoginClicked(_ sender: NSMenuItem) {
         LaunchAtLogin.isEnabled = !LaunchAtLogin.isEnabled
@@ -54,11 +97,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onPowerDown(note: NSNotification) {
+        prevState = IOBluetoothPreferenceGetControllerPowerState()
         setBluetooth(powerOn: false)
     }
 
     @objc func onPowerUp(note: NSNotification) {
-        setBluetooth(powerOn: true)
+        if (onPowerUpAction == "remember" && prevState != 0) || onPowerUpAction == "always" {
+            setBluetooth(powerOn: true)
+        }
     }
 
     private func setBluetooth(powerOn: Bool) {
