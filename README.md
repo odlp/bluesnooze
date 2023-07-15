@@ -41,7 +41,24 @@ Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say th
 
 ## FAQs
 
-### I hid the Blueesnooze icon, how do I show it again?
+### Can you add support for selectively disconnecting certain devices?
+
+Bluesnooze is a really simple app which toggles the Bluetooth power on/off.
+Disconnecting specific devices would require a complete rewrite, and I don't
+need this functionality or the complexity it brings. Please feel free to fork &
+experiment as you like ❤️
+
+### How can I hide the Bluesnooze icon?
+
+In your terminal run the following command:
+
+```sh
+defaults write com.oliverpeate.Bluesnooze hideIcon -bool true && killall Bluesnooze
+```
+
+When you next relaunch the application there should be no icon in the menu bar.
+
+### How can I restore the Bluesnooze icon?
 
 In your terminal run the following command:
 
@@ -50,10 +67,3 @@ defaults delete com.oliverpeate.Bluesnooze hideIcon && killall Bluesnooze
 ```
 
 When you next relaunch the application it should appear in the menu bar.
-
-### Can you add support for selectively disconnecting certain devices?
-
-Bluesnooze is a really simple app which toggles the Bluetooth power on/off.
-Disconnecting specific devices would require a complete rewrite, and I don't
-need this functionality or the complexity it brings. Please feel free to fork &
-experiment as you like ❤️

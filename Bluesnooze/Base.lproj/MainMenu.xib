@@ -27,12 +27,6 @@
                         <action selector="launchAtLoginClicked:" target="Voe-Tx-rLC" id="ooK-DW-6Kn"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Hide icon" id="iTh-xc-apd">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="hideIconClicked:" target="Voe-Tx-rLC" id="rZI-1a-Hhe"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Quit" id="0IH-xa-Tvk">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

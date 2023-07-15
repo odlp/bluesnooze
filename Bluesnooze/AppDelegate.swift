@@ -32,11 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setLaunchAtLoginState()
     }
 
-    @IBAction func hideIconClicked(_ sender: NSMenuItem) {
-        UserDefaults.standard.set(true, forKey: "hideIcon")
-        statusItem.statusBar?.removeStatusItem(statusItem)
-    }
-
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared.terminate(self)
     }
