@@ -8,6 +8,8 @@
 brew install bluesnooze
 ```
 
+Please note the latest release requires MacOS Monterey (12.0) or higher.
+
 ## Enjoying Bluesnooze? ❤️
 
 Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say thanks :coffee:
