@@ -8,6 +8,10 @@
 brew install bluesnooze
 ```
 
+## Enjoying Bluesnooze? ❤️
+
+Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say thanks :coffee:
+
 ## About
 
 **Bluesnooze prevents your sleeping Mac from connecting to Bluetooth accessories.**
@@ -34,11 +38,6 @@ You might also want to check-out Whisper –  [the volume limiter for MacOS](htt
 
 [download-latest]: https://github.com/odlp/bluesnooze/releases/latest
 
-## Enjoying Bluesnooze?
-
-Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say thanks :coffee:
-
-
 ## FAQs
 
 ### Can you add support for selectively disconnecting certain devices?
@@ -46,7 +45,7 @@ Perhaps you could [buy me a coffee](https://www.buymeacoffee.com/odlp) to say th
 Bluesnooze is a really simple app which toggles the Bluetooth power on/off.
 Disconnecting specific devices would require a complete rewrite, and I don't
 need this functionality or the complexity it brings. Please feel free to fork &
-experiment as you like ❤️
+experiment as you like ✌️
 
 ### How can I hide the Bluesnooze icon?
 
