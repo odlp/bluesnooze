@@ -5,7 +5,7 @@
 [Download the latest release][download-latest] or install via Homebrew:
 
 ```sh
-brew install bluesnooze
+brew install --cask bluesnooze
 ```
 
 Please note the latest release requires MacOS Monterey (12.0) or higher.
