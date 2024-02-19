@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var launchAtLoginMenuItem: NSMenuItem!
 
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    private var disabledByBluesnooze = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         initStatusItem()
@@ -49,15 +50,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onPowerDown(note: NSNotification) {
-        setBluetooth(powerOn: false)
+        disabledByBluesnooze = getBluetooth()
+        if (disabledByBluesnooze) {
+            setBluetooth(powerOn: false)
+        }
     }
 
     @objc func onPowerUp(note: NSNotification) {
-        setBluetooth(powerOn: true)
+        if (disabledByBluesnooze) {
+            setBluetooth(powerOn: true)
+            disabledByBluesnooze = false
+        }
     }
 
     private func setBluetooth(powerOn: Bool) {
         IOBluetoothPreferenceSetControllerPowerState(powerOn ? 1 : 0)
+    }
+    
+    private func getBluetooth() -> Bool {
+        return IOBluetoothPreferenceGetControllerPowerState()
     }
 
     // MARK: UI state
