@@ -10,17 +10,34 @@ import Cocoa
 import IOBluetooth
 import LaunchAtLogin
 
+// UserDefaults keys
+private let startTimeKey = "startTime"
+private let endTimeKey = "endTime"
+
+// Default time range: 5 PM to 6 AM
+private let defaultStartHour = 17 // 5 PM
+private let defaultEndHour = 6   // 6 AM
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var launchAtLoginMenuItem: NSMenuItem!
+    @IBOutlet weak var startTimeMenuItem: NSMenuItem!
+    @IBOutlet weak var endTimeMenuItem: NSMenuItem!
 
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Register default time range
+        UserDefaults.standard.register(defaults: [
+            startTimeKey: defaultStartHour,
+            endTimeKey: defaultEndHour
+        ])
+        
         initStatusItem()
         setLaunchAtLoginState()
+        updateTimeMenuItems()
         setupNotificationHandlers()
         setBluetooth(powerOn: true)
     }
@@ -34,6 +51,57 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared.terminate(self)
+    }
+    
+    @IBAction func setStartTime(_ sender: NSMenuItem) {
+        let hour = sender.tag
+        UserDefaults.standard.set(hour, forKey: startTimeKey)
+        updateTimeMenuItems()
+    }
+    
+    @IBAction func setEndTime(_ sender: NSMenuItem) {
+        let hour = sender.tag
+        UserDefaults.standard.set(hour, forKey: endTimeKey)
+        updateTimeMenuItems()
+    }
+    
+    private func updateTimeMenuItems() {
+        let startHour = UserDefaults.standard.integer(forKey: startTimeKey)
+        let endHour = UserDefaults.standard.integer(forKey: endTimeKey)
+        
+        startTimeMenuItem.title = "Start Time: \(formatHour(startHour))"
+        endTimeMenuItem.title = "End Time: \(formatHour(endHour))"
+        
+        // Update submenu items
+        if let startSubmenu = startTimeMenuItem.submenu,
+           let endSubmenu = endTimeMenuItem.submenu {
+            for item in startSubmenu.items + endSubmenu.items {
+                item.state = (item.tag == startHour && item.menu == startSubmenu) ||
+                            (item.tag == endHour && item.menu == endSubmenu) ? .on : .off
+            }
+        }
+    }
+    
+    private func formatHour(_ hour: Int) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h a"
+        let date = Calendar.current.date(bySettingHour: hour, minute: 0, second: 0, of: Date())!
+        return formatter.string(from: date)
+    }
+    
+    private func isWithinTimeRange() -> Bool {
+        let calendar = Calendar.current
+        let currentHour = calendar.component(.hour, from: Date())
+        let startHour = UserDefaults.standard.integer(forKey: startTimeKey)
+        let endHour = UserDefaults.standard.integer(forKey: endTimeKey)
+        
+        // Handle overnight range (e.g., 10 PM to 6 AM)
+        if endHour <= startHour {
+            return currentHour >= startHour || currentHour < endHour
+        }
+        
+        // Normal range within the same day
+        return currentHour >= startHour && currentHour < endHour
     }
 
     // MARK: Notification handlers
@@ -49,7 +117,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onPowerDown(note: NSNotification) {
-        setBluetooth(powerOn: false)
+        if isWithinTimeRange() {
+            setBluetooth(powerOn: false)
+        }
     }
 
     @objc func onPowerUp(note: NSNotification) {
