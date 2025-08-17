@@ -14,13 +14,270 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Bluesnooze" customModuleProvider="target">
             <connections>
+                <outlet property="endTimeMenuItem" destination="end-time-item" id="end-time-outlet"/>
                 <outlet property="launchAtLoginMenuItem" destination="I9E-pI-lLm" id="DFX-bS-N3m"/>
+                <outlet property="startTimeMenuItem" destination="start-time-item" id="start-time-outlet"/>
                 <outlet property="statusMenu" destination="AEO-aA-1fp" id="ueI-UR-7ba"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="AEO-aA-1fp">
             <items>
+                <menuItem title="Start Time: 5 PM" id="start-time-item">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Start Time" id="start-time-submenu">
+                        <items>
+                            <menuItem title="12 AM" id="start-0" tag="0" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-0"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="1 AM" id="start-1" tag="1" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-1"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="2 AM" id="start-2" tag="2" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-2"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="3 AM" id="start-3" tag="3" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-3"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="4 AM" id="start-4" tag="4" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-4"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="5 AM" id="start-5" tag="5" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-5"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="6 AM" id="start-6" tag="6" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-6"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="7 AM" id="start-7" tag="7" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-7"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="8 AM" id="start-8" tag="8" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-8"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="9 AM" id="start-9" tag="9" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-9"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="10 AM" id="start-10" tag="10" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-10"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="11 AM" id="start-11" tag="11" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-11"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="12 PM" id="start-12" tag="12" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-12"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="1 PM" id="start-13" tag="13" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-13"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="2 PM" id="start-14" tag="14" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-14"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="3 PM" id="start-15" tag="15" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-15"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="4 PM" id="start-16" tag="16" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-16"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="5 PM" id="start-17" tag="17" state="on" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-17"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="6 PM" id="start-18" tag="18" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-18"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="7 PM" id="start-19" tag="19" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-19"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="8 PM" id="start-20" tag="20" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-20"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="9 PM" id="start-21" tag="21" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-21"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="10 PM" id="start-22" tag="22" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-22"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="11 PM" id="start-23" tag="23" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setStartTime:" target="Voe-Tx-rLC" id="start-action-23"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="End Time: 11 PM" id="end-time-item">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="End Time" id="end-time-submenu">
+                        <items>
+                            <menuItem title="12 AM" id="end-0" tag="0" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-0"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="1 AM" id="end-1" tag="1" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-1"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="2 AM" id="end-2" tag="2" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-2"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="3 AM" id="end-3" tag="3" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-3"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="4 AM" id="end-4" tag="4" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-4"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="5 AM" id="end-5" tag="5" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-5"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="6 AM" id="end-6" tag="6" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-6"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="7 AM" id="end-7" tag="7" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-7"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="8 AM" id="end-8" tag="8" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-8"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="9 AM" id="end-9" tag="9" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-9"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="10 AM" id="end-10" tag="10" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-10"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="11 AM" id="end-11" tag="11" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-11"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="12 PM" id="end-12" tag="12" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-12"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="1 PM" id="end-13" tag="13" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-13"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="2 PM" id="end-14" tag="14" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-14"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="3 PM" id="end-15" tag="15" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-15"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="4 PM" id="end-16" tag="16" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-16"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="5 PM" id="end-17" tag="17" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-17"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="6 PM" id="end-18" tag="18" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-18"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="7 PM" id="end-19" tag="19" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-19"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="8 PM" id="end-20" tag="20" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-20"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="9 PM" id="end-21" tag="21" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-21"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="10 PM" id="end-22" tag="22" state="off" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-22"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="11 PM" id="end-23" tag="23" state="on" onStateImage="NSMenuOnState" keyEquivalent="">
+                                <connections>
+                                    <action selector="setEndTime:" target="Voe-Tx-rLC" id="end-action-23"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="separator-1" />
                 <menuItem title="Launch at login" id="I9E-pI-lLm" userLabel="Launch At Login Menu Item">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
