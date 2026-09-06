@@ -51,20 +51,25 @@ experiment as you like ✌️
 
 ### How can I hide the Bluesnooze icon?
 
-In your terminal run the following command:
+Bluesnooze is sandboxed, so it reads its preferences from inside its container
+rather than `~/Library/Preferences`. In your terminal run the following command:
 
 ```sh
-defaults write com.oliverpeate.Bluesnooze hideIcon -bool true && killall Bluesnooze
+defaults write ~/Library/Containers/com.oliverpeate.Bluesnooze/Data/Library/Preferences/com.oliverpeate.Bluesnooze.plist hideIcon -bool true && killall Bluesnooze
 ```
 
 When you next relaunch the application there should be no icon in the menu bar.
+
+If you previously ran `defaults write com.oliverpeate.Bluesnooze hideIcon ...`
+the value went to a domain the app never reads, which is why `defaults read` can
+report `1` while the icon is still visible.
 
 ### How can I restore the Bluesnooze icon?
 
 In your terminal run the following command:
 
 ```sh
-defaults delete com.oliverpeate.Bluesnooze hideIcon && killall Bluesnooze
+defaults delete ~/Library/Containers/com.oliverpeate.Bluesnooze/Data/Library/Preferences/com.oliverpeate.Bluesnooze.plist hideIcon && killall Bluesnooze
 ```
 
 When you next relaunch the application it should appear in the menu bar.
