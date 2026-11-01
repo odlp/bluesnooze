@@ -10,7 +10,6 @@ import Cocoa
 import IOBluetooth
 import IOKit.ps
 import LaunchAtLogin
-import os
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -19,7 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var launchAtLoginMenuItem: NSMenuItem!
 
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    private let logger = Logger(subsystem: "com.oliverpeate.Bluesnooze", category: "power")
     private var isAsleep = false
     private var bluetoothPoweredOn: Bool?
 
@@ -52,14 +50,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSWorkspace.shared.notificationCenter.addObserver(self, selector: sel, name: notification, object: nil)
         }
 
-        // Charger and display changes can arrive just after willSleep (when unplugging
-        // a single USB-C cable) or during a brief dark wake (when plugging it back in)
         let context = Unmanaged.passUnretained(self).toOpaque()
 
         if let source = IOPSNotificationCreateRunLoopSource({ context in
             guard let context = context else { return }
             Unmanaged<AppDelegate>.fromOpaque(context).takeUnretainedValue()
-                .updateBluetoothWhileAsleep(reason: "Power source changed")
+                .updateBluetoothWhileAsleep()
         }, context)?.takeRetainedValue() {
             CFRunLoopAddSource(CFRunLoopGetMain(), source, .defaultMode)
         }
@@ -67,25 +63,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         CGDisplayRegisterReconfigurationCallback({ _, flags, context in
             guard let context = context, !flags.contains(.beginConfigurationFlag) else { return }
             Unmanaged<AppDelegate>.fromOpaque(context).takeUnretainedValue()
-                .updateBluetoothWhileAsleep(reason: "Displays changed")
+                .updateBluetoothWhileAsleep()
         }, context)
     }
 
     @objc func onPowerDown(note: NSNotification) {
-        let onAC = isOnACPower()
-        let externalDisplay = hasExternalDisplay()
-        logger.notice("""
-            \(note.name.rawValue, privacy: .public): \
-            AC=\(onAC, privacy: .public) externalDisplay=\(externalDisplay, privacy: .public)
-            """)
-
-        // In clamshell mode (charger + external display) keep Bluetooth on, so a
-        // Bluetooth keyboard or mouse can wake the Mac, as macOS normally allows
         if note.name == NSWorkspace.willSleepNotification {
             isAsleep = true
 
-            if onAC && externalDisplay {
-                logger.notice("Clamshell setup detected, leaving Bluetooth on")
+            if isOnACPower() && hasExternalDisplay() {
                 return
             }
         }
@@ -95,24 +81,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func onPowerUp(note: NSNotification) {
         isAsleep = false
-        logger.notice("\(note.name.rawValue, privacy: .public): turning Bluetooth on")
         setBluetooth(powerOn: true)
     }
 
-    private func updateBluetoothWhileAsleep(reason: String) {
+    private func updateBluetoothWhileAsleep() {
         guard isAsleep else { return }
 
-        let onAC = isOnACPower()
-        let externalDisplay = hasExternalDisplay()
-        let powerOn = onAC && externalDisplay
+        let powerOn = isOnACPower() && hasExternalDisplay()
 
         guard powerOn != bluetoothPoweredOn else { return }
 
-        logger.notice("""
-            \(reason, privacy: .public) while asleep: \
-            AC=\(onAC, privacy: .public) externalDisplay=\(externalDisplay, privacy: .public), \
-            turning Bluetooth \(powerOn ? "on" : "off", privacy: .public)
-            """)
         setBluetooth(powerOn: powerOn)
     }
 
