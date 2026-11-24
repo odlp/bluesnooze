@@ -89,7 +89,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         [
             NSWorkspace.willSleepNotification: #selector(onPowerDown(note:)),
             NSWorkspace.willPowerOffNotification: #selector(onPowerDown(note:)),
-            NSWorkspace.didWakeNotification: #selector(onPowerUp(note:))
+            NSWorkspace.didWakeNotification: #selector(onPowerUp(note:)),
+            NSWorkspace.screensDidWakeNotification: #selector(onScreensWake(note:))
         ].forEach { notification, sel in
             NSWorkspace.shared.notificationCenter.addObserver(self, selector: sel, name: notification, object: nil)
         }
@@ -106,18 +107,33 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     @objc func onPowerUp(note: NSNotification) {
-        isSleeping = false
         switch sleepMode {
         case .powerOff:
+            isSleeping = false
             setBluetooth(powerOn: true)
         case .disconnectDevices:
             // Bluetooth was never switched off, but make sure it is on.
             setBluetooth(powerOn: true)
-            if reconnectOnWake {
-                reconnectDevices()
+            // A "dark wake" (the Mac wakes briefly with the display off, e.g. to handle a Bluetooth
+            // connection) also posts this notification. Keep guarding until the display is really on.
+            if !CGDisplayIsAsleep(CGMainDisplayID()) {
+                finishWake()
             }
-            disconnectedOnSleep.removeAll()
         }
+    }
+
+    @objc func onScreensWake(note: NSNotification) {
+        if isSleeping && sleepMode == .disconnectDevices {
+            finishWake()
+        }
+    }
+
+    private func finishWake() {
+        isSleeping = false
+        if reconnectOnWake {
+            reconnectDevices()
+        }
+        disconnectedOnSleep.removeAll()
     }
 
     /// Called when any device connects. If a selected device manages to reconnect while the
