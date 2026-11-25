@@ -116,7 +116,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             setBluetooth(powerOn: true)
             // A "dark wake" (the Mac wakes briefly with the display off, e.g. to handle a Bluetooth
             // connection) also posts this notification. Keep guarding until the display is really on.
-            if !CGDisplayIsAsleep(CGMainDisplayID()) {
+            if CGDisplayIsAsleep(CGMainDisplayID()) == 0 {
                 finishWake()
             }
         }
