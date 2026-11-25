@@ -22,6 +22,8 @@ If you pair Bluetooth headphones or speakers with both your phone & Mac it can b
 
 With Bluesnooze the Bluetooth connection is switched off when your Mac sleeps, and switched on when your Mac wakes.
 
+Alternatively, Bluesnooze can leave Bluetooth switched on and **only disconnect the devices you choose** when your Mac sleeps. See [Disconnecting only selected devices](#disconnecting-only-selected-devices).
+
 ![Screenshot showing Bluesnooze in the status bar](images/screenshot.png)
 
 You might also want to check-out Whisper –  [the volume limiter for MacOS](https://apps.apple.com/gb/app/whisper-volume-limiter/id1438132944?mt=12).
@@ -33,21 +35,29 @@ You might also want to check-out Whisper –  [the volume limiter for MacOS](htt
 1. Drag `Bluesnooze.app` to your `Applications` directory
 1. *Optional*: Configure 'Launch at login'
 
+## Disconnecting only selected devices
+
+Switching Bluetooth off entirely stops Find My from locating your sleeping Mac, and breaks "Unlock with Apple Watch". To avoid that:
+
+1. Click the Bluesnooze icon and choose **Only disconnect selected devices on sleep**
+1. Open **Devices to disconnect** and tick the paired devices (e.g. your headphones) you want released when the Mac sleeps
+1. *Optional*: tick **Reconnect devices on wake** to reconnect those devices when the Mac wakes
+
+In this mode Bluetooth stays powered on. When the Mac sleeps the selected devices are disconnected, and if one of them reconnects while the Mac is asleep (e.g. during a dark wake) it is disconnected again. Other devices are untouched. **Turn off all Bluetooth on sleep** keeps the original behaviour and is the default.
+
 ## Caveats
 
-- Please note this app is not compatible with the “Allow your Apple Watch to unlock your Mac” feature.
+- In the default "Turn off all Bluetooth" mode this app is not compatible with the “Allow your Apple Watch to unlock your Mac” feature. Use the selected-devices mode above instead.
+- Selected-devices mode is best-effort: it can only ask macOS to drop the connection, so a device that reconnects while the Mac is fully suspended can't be intercepted until the Mac next runs.
 - Unfortunately this app can't be distributed via the App Store because it uses a private API to switch Bluetooth on/off (but the release version is notarized by Apple).
 
 [download-latest]: https://github.com/odlp/bluesnooze/releases/latest
 
 ## FAQs
 
-### Can you add support for selectively disconnecting certain devices?
+### Can I disconnect only certain devices, instead of switching Bluetooth off?
 
-Bluesnooze is a really simple app which toggles the Bluetooth power on/off.
-Disconnecting specific devices would require a complete rewrite, and I don't
-need this functionality or the complexity it brings. Please feel free to fork &
-experiment as you like ✌️
+Yes, see [Disconnecting only selected devices](#disconnecting-only-selected-devices).
 
 ### How can I hide the Bluesnooze icon?
 
